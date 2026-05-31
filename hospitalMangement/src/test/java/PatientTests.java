@@ -1,0 +1,73 @@
+package com.Project.hospitalMangement;
+
+import com.Project.hospitalMangement.entity.Patient;
+import com.Project.hospitalMangement.repository.PatientRepository;
+import com.Project.hospitalMangement.service.PatientService;
+import com.Project.hospitalMangement.dto.BloodGroupCountResponseEntity;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+
+@SpringBootTest
+public class PatientTests {
+
+    @Autowired
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private PatientService patientService;
+
+    @Test
+    public void testPatientRepository() {
+
+        List<Patient> patientList = patientRepository.findAllPatientWithAppointment();
+
+        System.out.println(patientList);
+
+
+    }
+
+    @Test
+    public void testTransactionMethods() {
+
+        // Patient patient = patientService.getPatientById(1L);
+
+        // Patient patient = patientRepository.findByName("Rahul Sharma");
+
+        // List<Patient> patientList =
+        //         patientRepository.findByNameContaining("R");
+
+        // List<Patient> patientList =
+        //         patientRepository.findByBloodGroup(BloodGroupType.A_POSITIVE);
+
+        // List<Patient> patientList =
+        //         patientRepository.findByBirthDateAfter(LocalDate.of(1998,3,12));
+
+        // for(Patient patient : patientList) {
+        //     System.out.println(patient);
+        // }
+
+        // List<Object[]> bloodGroupList =
+        //         patientRepository.countEachBloodGroupType();
+
+        // for(Object[] objects : bloodGroupList) {
+        //     System.out.println(objects[0] + " " + objects[1]);
+        // }
+
+        // int rowsUpdated =
+        //   patientRepository.updateNameWithId("Arav Sharma", 1L);
+
+        //System.out.println(rowsUpdated);
+        List<BloodGroupCountResponseEntity> bloodGroupList =
+                patientRepository.countEachBloodGroupType();
+
+        for(BloodGroupCountResponseEntity bloodGroupCountResponse: bloodGroupList) {
+            System.out.println(bloodGroupCountResponse);
+
+
+
+        }
+    }}
